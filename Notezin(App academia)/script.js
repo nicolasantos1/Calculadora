@@ -9,97 +9,116 @@ function criar_caixas(){
         "E",
         "F"
     ];
-    var caixa = document.getElementById("forma")
-
-    var espaco_section = document.createElement("section")
-    espaco_section.id = "caixa" + number;
-    caixa.appendChild(espaco_section);
-
     
+    
+
+    var espace_sections = document.getElementById("forma");
+    var section = document.createElement("section");
     var tipo_treino = document.createElement("p");
-    tipo_treino.innerHTML = alfabeto[number];
-    espaco_section.appendChild(tipo_treino);
-
     var linhas_grupo = document.createElement("div");
-    linhas_grupo.className = "linha";
-    linhas_grupo.id = "linha"+ number;
-    espaco_section.appendChild(linhas_grupo);
-    
-    
-    var linhas = document.createElement("label");
-    linhas.innerHTML = "Supino";
-    linhas.className = "exercicio";
-    linhas_grupo.appendChild(linhas);
-    
-
+    var linhas = document.createElement("input");
     var input = document.createElement("input");
-    linhas_grupo.appendChild(input);
-
-    var puli = document.createElement("br");
-    espaco_section.appendChild(puli);
-    espaco_section.appendChild(puli);
-
     var add_ex = document.createElement("button");
-    
-    add_ex.setAttribute("onclick","criar_linhas(1)")
-    add_ex.innerHTML = "Adicionar Exercício"
-    espaco_section.appendChild(add_ex);
 
 
+   
+    linhas_grupo.id = "linha"+ number;
+
+    linhas.innerHTML = "colocar";
+    add_ex.innerHTML = "Adicionar Exercício";
+    tipo_treino.innerHTML = alfabeto[number];
+
+    section.className = "secao";
+    linhas_grupo.className = "linha";
+    linhas.className = "exercicio";
+    input.className = "input";
+
+
+    section.appendChild(tipo_treino);
+    espace_sections.appendChild(section);
+    section.appendChild(linhas_grupo);
+    section.appendChild(add_ex);
+
+    add_ex.setAttribute("onclick","criar_linhas("+number+"); manter_mudado();")
+    criar_linhas(number)
 
     number = number + 1;
-    
+
 }
 
-function criar_linhas(linhaNum){
-
-    var quallinha = document.getElementById("linha"+ (linhaNum-1) );
-
-    var linha = document.createElement("label");
+function criar_linhas(linhaNum ){
+    
+    var quallinha = document.getElementById("linha"+ (linhaNum) );
+    
+    var label = document.createElement("input");
     var input = document.createElement("input");
+    var puli = document.createElement("br");
 
-    linha.innerHTML = "colocar";
+    label.placeholder = "colocar exercicio"
+
+    input.className = "input";
+    label.className = "exercicio";
+
+    label.innerHTML = "colocar";
+    
    
-    quallinha.appendChild(linha);
+    
+    quallinha.appendChild(label);
     quallinha.appendChild(input);
+    quallinha.appendChild(puli);
+    
 }
 
-var estado  = false;
-function mudar_estado() {
 
+var estado = false;
+function mudar_estado() {
     estado = !estado;
+    manter_mudado();
     
-    var sections = document.getElementsByClassName("linha");
+}
+
+    
+
+function manter_mudado(){
+
+    
+    var exercicios = document.querySelectorAll(".exercicio");
+    var exercicios_edit = document.querySelectorAll(".exercicio_editando")
     
     if(estado == true){
-        for (var i = 0; i < sections.length; i++)
-        {
-            var section = sections[i];
-
-            var label = section.querySelector(".exercicio");
-            var input = document.createElement("input");
-            input.value = label.textContent
-            input.className = "exercicio"
-            section.replaceChild(input, label);
+        for (var a = 0; a < exercicios.length; a++){
+            var exercicio = exercicios[a];
+            
+            exercicio.className = "exercicio_editando";
         }
     }
-    if(estado == false)
-    {
-        for (var i = 0; i < sections.length; i++)
-            {
-                section = sections[i];
-                input = section.querySelector(".exercicio");
-
-                label = document.createElement("label");
-                label.innerHTML = input.value;
-                label.className = "exercicio"
-                
-                section.replaceChild(label, input)
-            }
+    if (estado == false){
+        for (var a = 0; a < exercicios_edit.length; a++){
+            var exercicio_edit = exercicios_edit[a];
+            
+            exercicio_edit.className = "exercicio";
+        }
     }
     
     
-}
+    
+    
+}  
+    
+    
+    /*
+    var label = section.querySelector(".exercicio");
+        if (estado) {
+            var input = document.createElement("input");
+            input.value = label.textContent;
+            input.className = "exercicio";
+            section.replaceChild(input, label);
+        } else {
+            var novo_label = document.createElement("label");
+            novo_label.textContent = label.value;
+            novo_label.className = "exercicio";
+            section.replaceChild(novo_label, label);
+        }
 /*
 var contadorElemento = document.getElementById('contador');
 
