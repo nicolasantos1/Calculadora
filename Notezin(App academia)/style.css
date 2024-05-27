@@ -8,21 +8,29 @@
     justify-content: space-around;
     
 }
-.linha{
+.linha_grupo{
+    border-radius: 30px;
+    padding: 20px;
     background-color: aqua;
-    padding: 10px;
     white-space: nowrap;
+    gap: 1em 0;
+    display: grid;
+    grid: auto / auto auto; /*a linha apos a barra representa quantas colocunas vai ser, antes da barra é o tamanho da primeira*/
 
 }
 .exercicio, .input, .exercicio_editando {
+    border: 0;
+    
 
-    margin: 5px;
 }
 
 .exercicio{
-    border: 0;
     background-color: transparent;
+}
+.exercicio_editando{
+
 }
 .exercicio:focus{
     outline: none;
 }
+

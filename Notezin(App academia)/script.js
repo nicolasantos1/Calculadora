@@ -29,7 +29,7 @@ function criar_caixas(){
     tipo_treino.innerHTML = alfabeto[number];
 
     section.className = "secao";
-    linhas_grupo.className = "linha";
+    linhas_grupo.className = "linha_grupo";
     linhas.className = "exercicio";
     input.className = "input";
 
@@ -52,7 +52,7 @@ function criar_linhas(linhaNum ){
     
     var label = document.createElement("input");
     var input = document.createElement("input");
-    var puli = document.createElement("br");
+    //var puli = document.createElement("br");
 
     label.placeholder = "colocar exercicio"
 
@@ -65,7 +65,7 @@ function criar_linhas(linhaNum ){
     
     quallinha.appendChild(label);
     quallinha.appendChild(input);
-    quallinha.appendChild(puli);
+    //quallinha.appendChild(puli);
     
 }
 
@@ -92,7 +92,7 @@ function manter_mudado(){
             exercicio.className = "exercicio_editando";
         }
     }
-    if (estado == false){
+    else{
         for (var a = 0; a < exercicios_edit.length; a++){
             var exercicio_edit = exercicios_edit[a];
             
